@@ -1,0 +1,148 @@
+select {
+  padding: 0.375rem 0.75rem;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.phone_numbers__search_panel, .search_numbers_results_filter__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3rem 0.75rem;
+}
+
+.phone_numbers_search_panel__section, .search_numbers_panel__section {
+  margin: 0 1rem;
+}
+
+.phone_numbers_search_panel_section__title, .search_numbers_panel_section__title {
+  padding: 1.25rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.additional_search_panel__switcher {
+  padding: 3rem 0.75rem;
+  cursor: pointer;
+}
+
+.additional_search_panel_switcher__item {
+ font-size: 1.2rem;
+}
+
+.phone_numbers_type__item {
+  margin-right: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: white;
+  color: #005DA6;
+  border: 0.125rem solid #005DA6;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.phone_numbers_type__active_item {
+  margin-right: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #005DA6;
+  color: white;
+  border: 0.125rem solid #005DA6;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobile_operators__item {
+  padding: 0.75rem 1.25rem;
+  margin: 1rem 0;
+  background: #f7a700;
+  border: 0;
+  border-radius: 0.75rem;
+  color: #0a0a0a;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.phone_numbers_price_category__active_item, .numbers_set__active_item {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  background: #F07420;
+  border: 0.125rem solid transparent;
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.phone_numbers_price_category__item, .numbers_set__item {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  background: white;
+  border: 0.125rem solid #F07420;
+  border-radius: 0.75rem;
+  color: #F07420;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.search_phone_numbers_result_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+}
+
+.search_phone_numbers_result_section__item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin: 0rem 2.5rem;
+  border-bottom: 0.125rem solid #DBD9D6;
+  font-size: 1.5rem;
+
+  i {
+    padding: 0;
+  }
+}
+
+.search_phone_numbers_result_section__hidden_item {
+  display: none;
+}
+
+.phone_number_mask__slot {
+  margin: 0 0.25rem;
+  padding: 0.125rem 0.25rem;
+  border: 0.125rem solid #161616;
+  color: #161616;
+  font-size: 1.2rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  cursor: pointer;
+
+  &[placeholder] {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+}
+
+.phone_number_mask_slot__interval {
+  color: #161616;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.preloader {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+}

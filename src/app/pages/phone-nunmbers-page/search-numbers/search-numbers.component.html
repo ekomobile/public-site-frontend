@@ -1,0 +1,188 @@
+<div>
+  <!--- Main panel of search of phone numbers --->
+  <div class="phone_numbers__search_panel">
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите тип номеров:
+      </div>
+      <span *ngFor="let type of phoneNumbersTypesList"
+            [className]="type.state ? 'phone_numbers_type__active_item' : 'phone_numbers_type__item'"
+            (click)="setCurrentPhoneNumbersType(type.id)"
+      >
+        {{type.name}}
+      </span>
+    </div>
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите сеть оператора:
+      </div>
+      <span *ngFor="let operator of MobileOperatorsList"
+            class="mobile_operators__item"
+            (click)="setCurrentMobileOperator(operator.id)"
+      >
+        {{operator.name}}
+      </span>
+    </div>
+  </div>
+  <!--- End of main panel of search of phone numbers --->
+
+  <div class="additional_search_panel__switcher"
+       (click)="additionalSearchPanelVisibility = !additionalSearchPanelVisibility"
+  >
+    <span class="additional_search_panel_switcher__item" *ngIf="!additionalSearchPanelVisibility">
+      <i class="fas fa-angle-down"></i>
+      Показать раширенный поиск номеров
+    </span>
+    <span class="additional_search_panel_switcher__item" *ngIf="additionalSearchPanelVisibility">
+      <i class="fas fa-angle-up"></i>
+      Скрыть расширенный поиск номеров
+    </span>
+  </div>
+  <!--- Advanced panel of search of phone numbers --->
+  <div class="phone_numbers__search_panel" *ngIf="additionalSearchPanelVisibility">
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите какие цифры должны быть в номере:
+      </div>
+      <div>
+        <span *ngFor="let number of numbersSetList"
+              [className]="number.include ?
+              'numbers_set__active_item' : 'numbers_set__item'"
+              (click)="number.include = !number.include; number.exclude = false"
+        >
+          {{number.value}}
+        </span>
+      </div>
+    </div>
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите каких цифр не должно быть в номере:
+      </div>
+      <div>
+        <span *ngFor="let number of numbersSetList"
+              [className]="number.exclude ?
+              'numbers_set__active_item' : 'numbers_set__item'"
+              (click)="number.exclude = !number.exclude; number.include = false"
+        >
+          {{number.value}}
+        </span>
+      </div>
+    </div>
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите маску номера:
+      </div>
+      <div>
+        <span class="phone_number_mask_slot__interval">
+          +7 (
+        </span>
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-1"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-2"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-3"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <span class="phone_number_mask_slot__interval">
+          )
+        </span>
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-4"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-5"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-6"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <span class="phone_number_mask_slot__interval">
+           -
+        </span>
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-7"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-8"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <span class="phone_number_mask_slot__interval">
+           -
+        </span>
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-9"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+        <input type="text" maxlength="1" placeholder="X" class="phone_number_mask__slot" id="slot-10"
+               (keyup)="changeMaskSlotItem($event.target, $event.key)"
+        >
+      </div>
+    </div>
+    <div class="phone_numbers_search_panel__section">
+      <div class="phone_numbers_search_panel_section__title">
+        Выберите степень соответствия номеров заданной маске:
+      </div>
+      <select (change)="setPhoneNumbersSearchingStrict()">
+        <option>
+          Не строгое
+        </option>
+        <option>
+          Строгое
+        </option>
+      </select>
+    </div>
+  </div>
+  <!--- End of advanced panel of search of phone numbers --->
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center">
+    <button class="common_corp__button" (click)="fetchPhoneNumbersList()">
+      Найти номера
+    </button>
+  </div>
+  <!--- The panel for filter of searched results --->
+  <div class="search_numbers_results_filter__panel">
+    <div class="search_numbers_panel__section">
+      <div class="search_numbers_panel_section__title" *ngIf="phoneNumbersLoadingState">
+        Найдено номеров: {{phoneNumbersList.length}} шт. Можете отфильтровать их по цене:
+      </div>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: start">
+       <span *ngFor="let category of phoneNumbersPriceCategoriesList"
+             [className]="currentCategoriesList.indexOf(category) === -1 ?
+             'phone_numbers_price_category__item' : 'phone_numbers_price_category__active_item'"
+             (click)="currentCategoriesList.indexOf(category) === -1 ?
+             addCategory(category) : removeCategory(category)"
+       >
+         {{category}} <i class="fas fa-ruble-sign currency__icon"></i>
+       </span>
+      </div>
+    </div>
+    <div class="search_numbers_panel__section">
+      <div class="search_numbers_panel_section__title">
+        Сортировка цен:
+      </div>
+      <select (change)="sortPhoneNumbersList()">
+        <option>
+          По нарастанию
+        </option>
+        <option>
+          По убыванию
+        </option>
+      </select>
+    </div>
+  </div>
+  <!--- End of the panel for filter of searched results --->
+</div>
+<hr>
+<div *ngIf="phoneNumbersLoadingState" class="search_phone_numbers_result_section">
+  <div *ngFor="let phoneNumber of phoneNumbersList"
+       [className]="currentCategoriesList.indexOf(phoneNumber.price) !== -1 ?
+              'search_phone_numbers_result_section__item' : 'search_phone_numbers_result_section__hidden_item'"
+  >
+    <span *ngIf="phoneNumber.type == 1">{{phoneNumber.def_ctn | phoneNumberPipe}}</span>
+    <span *ngIf="phoneNumber.type == 2">{{phoneNumber.abc_ctn | phoneNumberPipe}}</span>
+    <span>{{phoneNumber.price}} <i class="fas fa-ruble-sign currency__icon"></i></span>
+    <i class="fas fa-cart-plus common__icon"></i>
+  </div>
+</div>
+
+<div *ngIf="!phoneNumbersLoadingState" class="preloader">
+  Загружаю...
+</div>

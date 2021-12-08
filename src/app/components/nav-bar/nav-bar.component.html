@@ -1,0 +1,45 @@
+<div class="nav_bar_main__wrapper">
+  <div class="content_manager__panel">
+    <span class="select__wrapper">
+      <i class="fas fa-map-marker-alt"></i>
+      <select class="select__element">
+       <option *ngFor="let city of citiesList">
+        {{city?.name}}
+       </option>
+      </select>
+    </span>
+    <span class="select__wrapper">
+      <i class="fas fa-user"></i>
+
+      <select class="select__element">
+        <option *ngFor="let segment of segmentsList">
+          {{segment?.name}}
+        </option>
+      </select>
+    </span>
+  </div>
+
+ <div class="nav_bar__panel">
+  <span class="corp__logo">
+    <img src="https://www.ekomobile.ru/bitrix/templates/index/img/logo_new.png" alt="logo">
+  </span>
+
+  <div class="nav_menu__block">
+    <span class="nav_menu_block__item" routerLink="/b2c"
+          routerLinkActive="nav_menu_block__active_item"
+          [routerLinkActiveOptions]="{exact:true}"
+    >
+      Главная
+    </span>
+    <span class="nav_menu_block__item" routerLink="/b2c/phone-numbers"
+          routerLinkActive="nav_menu_block__active_item"
+          [routerLinkActiveOptions]="{exact:true}"
+    >
+      Номера
+    </span>
+  </div>
+  <div class="user_tools__panel">
+    <i class="fas fa-shopping-cart common__icon"></i>
+  </div>
+ </div>
+</div>
